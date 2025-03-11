@@ -1,0 +1,7 @@
+library(igraph)
+trade_data <- read.csv("trade_matrix.csv", row.names = 1)
+trade_matrix <- as.matrix(trade_data)
+trade_graph <- graph_from_adjacency_matrix(trade_matrix, mode = "directed")
+degree_values <- degree(trade_graph)
+degree_sd <- sd(degree_values)
+write.csv(data.frame(degree_sd), file = "Network degree standard deviation.csv", row.names = FALSE)

@@ -1,0 +1,7 @@
+library(igraph)
+trade_data <- read.csv("trade_matrix.csv", row.names = 1)
+trade_matrix <- as.matrix(trade_data)
+trade_graph <- graph_from_adjacency_matrix(trade_matrix, mode = "directed")
+community <- cluster_walktrap(trade_graph)
+modularity <- modularity(community)
+write.csv(data.frame(modularity), file = "Network modularity.csv", row.names = FALSE)

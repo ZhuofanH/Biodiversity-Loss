@@ -1,0 +1,6 @@
+library(igraph)
+trade_data <- read.csv("trade_matrix.csv", row.names = 1)
+trade_matrix <- as.matrix(trade_data)
+trade_graph <- graph_from_adjacency_matrix(trade_matrix, mode = "directed")
+num_edges <- ecount(trade_graph)
+write.csv(data.frame(num_edges), file = "Number of edges.csv", row.names = FALSE)

@@ -1,0 +1,6 @@
+library(igraph)
+trade_data <- read.csv("trade_matrix.csv", row.names = 1)
+trade_matrix <- as.matrix(trade_data)
+trade_graph <- graph_from_adjacency_matrix(trade_matrix, mode = "directed")
+network_density <- edge_density(trade_graph)
+write.csv(data.frame(network_density), file = "Network density.csv", row.names = FALSE)
