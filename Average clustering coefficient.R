@@ -1,0 +1,8 @@
+library(igraph)
+trade_data <- read.csv("trade_matrix.csv", row.names = 1)
+trade_matrix <- as.matrix(trade_data)
+trade_graph <- graph_from_adjacency_matrix(trade_matrix, mode = "directed")
+average_clustering_coefficient <- transitivity(trade_graph, type = "average")
+write.csv(data.frame(average_clustering_coefficient), file = "Average clustering coefficient.csv", row.names = FALSE)
+node_clustering_coefficients <- transitivity(trade_graph, type = "local")
+write.csv(data.frame(node_clustering_coefficients), file = "node_clustering_coefficients.csv")
